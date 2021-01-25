@@ -1,6 +1,7 @@
 package com.springboot.webflux.app.models.documents;
 
 import java.util.Date;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
@@ -21,6 +22,11 @@ public class Producto {
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createAt;
+	
+	@Valid
+	private Categoria categoria;
+	
+	private String foto;
 
 	public Producto() {}
 
@@ -29,6 +35,11 @@ public class Producto {
 		this.precio = precio;
 	}
 	
+	public Producto(String nombre, Double precio, Categoria categoria) {
+		this(nombre, precio);
+		this.categoria = categoria;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -52,5 +63,21 @@ public class Producto {
 	}
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 }
